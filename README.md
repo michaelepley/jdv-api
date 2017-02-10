@@ -1,33 +1,18 @@
-# jdv-map
+# jdv-api
 
-AngularJS application frontend for a local jboss data virtualization instance. Reads ODATA in form of REST and displays as a Leaflet api OpenStreet map and Smart-Table grid.
+A JBoss Data Virtualization project that creates an ODATA REST api that serves federated data from Amazon S3, Relational Database and KML flat files.  
 
 ## Build and Run
-In the jdv-map directory
-
-`npm install`
-
-`bower install`
-
-`grunt client`
+Import this project in JBoss Developer Studio (version 9)  as a Teiid Modeling project
 
 ## Editing
-The service url and the auth credentials that pulls the data is located in
+The Relational database is a postgresql instance on the development localhost with a database of `jboss`, username of `jboss` and password of `jboss`.  The connection driver for the database is in the `lib` directory
 
-`client/app/components/map/datavirt-service.js`
+## Todo
+Implement a fourth Mongo datasource as an example
 
-The proxy that allows the cross domain query is located in
-'Gruntfile.js'
-
-By default the context is on a local server on port 8080
 
 ## References
 [JBoss Data Virtualization](https://www.redhat.com/en/technologies/jboss-middleware/data-virtualization)
 
-[AngularJS](https://angular.io/)
-
-[UI Bootstrap](https://angular-ui.github.io/bootstrap/)
-
-[UI-Leaflet](http://angular-ui.github.io/ui-leaflet/#!/)
-
-[Smart Table](http://lorenzofox3.github.io/smart-table-website/)
+[Amazon S3](https://aws.amazon.com/s3/)
