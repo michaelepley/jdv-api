@@ -5,6 +5,7 @@
     <modelImports xmi:uuid="mmuuid:26e26cfb-1a81-4b37-b252-1ee3be155c79" name="postgresql_ds" modelLocation="../datasources/postgresql_ds.xmi" uuid="mmuuid:6084ee48-5aa0-4998-a3b5-a5f71c2a5b12" modelType="PHYSICAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
     <modelImports xmi:uuid="mmuuid:bd0b3039-9558-46bd-89c8-d0a5981a9461" name="s3_view" modelLocation="../views/s3_view.xmi" uuid="mmuuid:c2769bbb-aa23-4c9a-be7c-c991179c638b" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
     <modelImports xmi:uuid="mmuuid:05738036-be01-40b9-9dd3-e9bbb0a4c2fb" name="kml_view" modelLocation="../views/kml_view.xmi" uuid="mmuuid:92d04306-aac1-4ad6-bd93-011bd8635f3a" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
+    <modelImports xmi:uuid="mmuuid:7d3d8d49-2e53-47bd-b995-5ee483cb7b80" name="mongo_view" modelLocation="../views/mongo_view.xmi" uuid="mmuuid:b5238736-2b18-47fc-9d3b-8c9be8da7e42" modelType="VIRTUAL" primaryMetamodelUri="http://www.metamatrix.com/metamodels/Relational"/>
   </mmcore:ModelAnnotation>
   <relational:BaseTable xmi:uuid="mmuuid:1578f1b0-5d44-4b7f-ba4a-60c38b8d2197" name="poi_federated" nameInSource="&quot;public&quot;.&quot;us_parks&quot;" supportsUpdate="false">
     <columns xmi:uuid="mmuuid:2ed5128e-ffc7-42ea-9ffc-395ed47a33be" name="id" nameInSource="&quot;id&quot;" nativeType="serial" length="10" fixedLength="true" nullable="NO_NULLS" updateable="false" uniqueKeys="mmuuid/81f7c83d-3f4b-4a23-8a4d-544a7b79bb45">
@@ -28,12 +29,18 @@
     <columns xmi:uuid="mmuuid:af1545cd-eb89-4199-8e6e-fd8c55761539" name="coordinates" length="4000" defaultValue="" updateable="false">
       <type href="http://www.w3.org/2001/XMLSchema#string"/>
     </columns>
+    <columns xmi:uuid="mmuuid:e083fd54-d7e3-41ae-8749-28076b75e0ba" name="geoType">
+      <type href="http://www.w3.org/2001/XMLSchema#string"/>
+    </columns>
+    <columns xmi:uuid="mmuuid:f32e66b9-8a1d-48cb-a7e5-8ca3c4c91807" name="geoCoordinates">
+      <type href="http://www.w3.org/2001/XMLSchema#base64Binary"/>
+    </columns>
     <primaryKey xmi:uuid="mmuuid:81f7c83d-3f4b-4a23-8a4d-544a7b79bb45" name="us_parks_pkey" nameInSource="&quot;us_parks_pkey&quot;" columns="mmuuid/2ed5128e-ffc7-42ea-9ffc-395ed47a33be"/>
   </relational:BaseTable>
   <transformation:TransformationContainer xmi:uuid="mmuuid:f5a3eb61-65da-4620-b76e-c0e229ba2654">
     <transformationMappings xsi:type="transformation:SqlTransformationMappingRoot" xmi:uuid="mmuuid:1daa6e44-03c8-4739-ad6b-637dbcf0df79" outputs="mmuuid/1578f1b0-5d44-4b7f-ba4a-60c38b8d2197" target="mmuuid/1578f1b0-5d44-4b7f-ba4a-60c38b8d2197">
       <helper xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:04e7f01f-0528-47ab-bbcd-ccca7d0bda1e">
-        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:eaac34fe-ae62-46ff-a27c-80a36cbc7bb6" selectSql="SELECT&#xa;&#x9;&#x9;p.id, p.name, p.state, p.rating, s.org, k.description, k.coordinates&#xa;&#x9;FROM&#xa;&#x9;&#x9;postgresql_ds.us_parks AS p, s3_view.s3_table AS s, kml_view.kml_table AS k&#xa;&#x9;WHERE&#xa;&#x9;&#x9;(p.id = s.id) AND (p.name = k.name)"/>
+        <nested xsi:type="transformation:SqlTransformation" xmi:uuid="mmuuid:eaac34fe-ae62-46ff-a27c-80a36cbc7bb6" selectSql="SELECT&#xa;&#x9;&#x9;p.id, p.name, p.state, p.rating, s.org, k.description, k.coordinates, m.geoType, m.geoCoordinates&#xa;&#x9;FROM&#xa;&#x9;&#x9;postgresql_ds.us_parks AS p, s3_view.s3_table AS s, kml_view.kml_table AS k, mongo_view.features AS m&#xa;&#x9;WHERE&#xa;&#x9;&#x9;(p.id = s.id) AND (p.name = k.name) AND (p.state = m.name)"/>
         <aliases xmi:uuid="mmuuid:793a8ce3-db81-43ce-b835-a05a7b21a4d8" alias="p">
           <aliasedObject href="../datasources/postgresql_ds.xmi#mmuuid/021c5ce9-ceba-4c56-b63c-17f9b5b94ffd"/>
         </aliases>
@@ -42,6 +49,9 @@
         </aliases>
         <aliases xmi:uuid="mmuuid:01536543-2d52-4f0e-9fc0-c282b4c19b0e" alias="k">
           <aliasedObject href="../views/kml_view.xmi#mmuuid/c47b1158-9170-4c2a-8d05-157e0782e34d"/>
+        </aliases>
+        <aliases xmi:uuid="mmuuid:b9f24c75-a1c0-4f17-adfe-ef873f521c10" alias="m">
+          <aliasedObject href="../views/mongo_view.xmi#mmuuid/27eb1f15-35c9-478c-ab83-92e2bef716dd"/>
         </aliases>
       </helper>
       <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:69af2206-fd8a-4505-b1d5-d4c05fccf2dd" outputs="mmuuid/2ed5128e-ffc7-42ea-9ffc-395ed47a33be">
@@ -65,9 +75,16 @@
       <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:c0d69198-68ed-45fe-a22c-bca408ec1591" outputs="mmuuid/af1545cd-eb89-4199-8e6e-fd8c55761539">
         <inputs href="../views/kml_view.xmi#mmuuid/820e0c98-2fb1-4b1e-96eb-80a1667e95cd"/>
       </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:e0e17601-9cb0-41f6-b372-96f97399db17" outputs="mmuuid/e083fd54-d7e3-41ae-8749-28076b75e0ba">
+        <inputs href="../views/mongo_view.xmi#mmuuid/aa788ba9-a6cc-46c4-b184-e0ce78860ff5"/>
+      </nested>
+      <nested xsi:type="transformation:TransformationMapping" xmi:uuid="mmuuid:6ecb45c1-2450-4c59-a9ef-ce0740fc82d2" outputs="mmuuid/f32e66b9-8a1d-48cb-a7e5-8ca3c4c91807">
+        <inputs href="../views/mongo_view.xmi#mmuuid/64cc027e-8d39-4787-a385-7dca4513f897"/>
+      </nested>
       <inputs href="../datasources/postgresql_ds.xmi#mmuuid/021c5ce9-ceba-4c56-b63c-17f9b5b94ffd"/>
       <inputs href="../views/s3_view.xmi#mmuuid/da098b4f-98a2-4d53-9fb3-18afe56c329a"/>
       <inputs href="../views/kml_view.xmi#mmuuid/c47b1158-9170-4c2a-8d05-157e0782e34d"/>
+      <inputs href="../views/mongo_view.xmi#mmuuid/27eb1f15-35c9-478c-ab83-92e2bef716dd"/>
     </transformationMappings>
   </transformation:TransformationContainer>
   <mmcore:AnnotationContainer xmi:uuid="mmuuid:12605426-7e37-4b3b-908d-d856356bcfc2">
