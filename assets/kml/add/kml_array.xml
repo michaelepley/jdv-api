@@ -51,6 +51,49 @@
           <coordinates>19.39999,-155.29962,0</coordinates>
         </Point>
       </Placemark>
+      <!-- new -->
+      <Placemark>
+         <name>Boston National Historical Park</name>
+         <description>The Boston National Historical Park is an association of sites that showcase Boston's role in the American Revolution. It was designated a national park on October 1, 1974. Seven of the eight sites are connected by the Freedom Trail, a walking tour of downtown Boston. All eight properties are National Historic Landmarks.</description>
+         <Point>
+           <coordinates>42.36,-71.05617,0</coordinates>
+         </Point>
+       </Placemark>
+       <Placemark>
+          <name>San Juan National Historic Site</name>
+          <description>San Juan National Historic Site (Spanish: Sitio Histórico Nacional de San Juan) in the Old San Juan section of San Juan, Puerto Rico, is a National Park Service-managed historic site which protects and interprets colonial-era forts such as Castillo San Felipe del Morro, bastions, powder houses, and three fourths of the old city wall.</description>
+          <Point>
+            <coordinates>18.4675,-66.11012,0</coordinates>
+          </Point>
+        </Placemark>
+        <Placemark>
+           <name>Saratoga National Historical Park</name>
+           <description>Saratoga National Historical Park is a United States National Historical Park located in the Town of Stillwater in eastern New York, forty miles (64 km) north of Albany. The park preserves the site of the Battles of Saratoga.</description>
+           <Point>
+             <coordinates>42.99889,-73.63728,0</coordinates>
+           </Point>
+         </Placemark>
+         <Placemark>
+            <name>Oregon Caves National Monument</name>
+            <description>Oregon Caves National Monument and Preserve is a protected area in the northern Siskiyou Mountains of southwestern Oregon in the United States. The main part of the 4,558-acre (1,845 ha) park, including the marble cave and a visitor center, is 20 miles (32 km) east of Cave Junction, on Oregon Route 46</description>
+            <Point>
+              <coordinates>42.09806,-123.40692,0</coordinates>
+            </Point>
+          </Placemark>
+          <Placemark>
+             <name>Oklahoma City National Memorial</name>
+             <description>The Oklahoma City National Memorial is a memorial in the United States that honors the victims, survivors, rescuers, and all who were affected by the Oklahoma City bombing on April 19, 1995. The memorial is located in downtown Oklahoma City on the former site of the Alfred P. Murrah Federal Building, which was destroyed in the 1995 bombing.</description>
+             <Point>
+               <coordinates>35.47278,-97.51708,0</coordinates>
+             </Point>
+           </Placemark>
+           <Placemark>
+              <name>Big Bend National Park</name>
+              <description>Big Bend National Park in Texas has national significance as the largest protected area of Chihuahuan Desert topography and ecology in the United States. It contains more than 1,200 species of plants, more than 450 species of birds, 56 species of reptiles, and 75 species of mammals.</description>
+              <Point>
+                <coordinates>29.81874,-103.06042,0</coordinates>
+              </Point>
+            </Placemark>
     </Placemarks>
   </Document>
 </kml>

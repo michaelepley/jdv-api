@@ -23,6 +23,34 @@
           <coordinates>38.87657,-77.07122,0</coordinates>
         </Point>
       </Placemark>
+     <Placemark>
+        <name>Badlands National Park</name>
+        <description>Badlands National Park (Lakota: Makȟóšiča[3]) is a national park in southwestern South Dakota that protects 242,756 acres (379.306 sq mi; 98,240 ha)[1] of sharply eroded buttes, pinnacles, and spires blended with the largest undisturbed mixed grass prairie in the United States. The park is managed by the National Park Service..</description>
+        <Point>
+          <coordinates>43.6504,-102.43392,0</coordinates>
+        </Point>
+      </Placemark>
+     <Placemark>
+        <name>Cape Hatteras National Seashore</name>
+        <description>Cape Hatteras National Seashore is a United States national seashore which preserves the portion of the Outer Banks of North Carolina from Bodie Island to Ocracoke Island, stretching over 70 miles (110 km), and is managed by the National Park Service.</description>
+        <Point>
+          <coordinates>35.30361,-75.51123,0</coordinates>
+        </Point>
+      </Placemark>
+     <Placemark>
+        <name>Fort Pulaski National Monument</name>
+        <description>Fort Pulaski National Monument is located on Cockspur Island between Savannah and Tybee Island, Georgia. It preserves Fort Pulaski, where in 1862 during the American Civil War, the Union Army successfully tested rifled cannon in combat, the success of which rendered brick fortifications obsolete.</description>
+        <Point>
+          <coordinates>32.02722,-80.89008,0</coordinates>
+        </Point>
+      </Placemark>
+     <Placemark>
+        <name>Hawaii Volcanoes National Park</name>
+        <description>Hawaii Volcanoes National Park, established in 1916, is a United States National Park located in the U.S. State of Hawaii on the island of Hawaii. It encompasses two active volcanoes: Kīlauea, one of the world's most active volcanoes, and Mauna Loa, the world's most massive shield volcano.</description>
+        <Point>
+          <coordinates>19.39999,-155.29962,0</coordinates>
+        </Point>
+      </Placemark>
     </Placemarks>
   </Document>
 </kml>
